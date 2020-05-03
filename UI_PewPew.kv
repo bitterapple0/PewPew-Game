@@ -1,0 +1,168 @@
+ScreenManager:
+    StartWindow:
+    GameWindow:
+    InstructionWindow:
+<InstructionWindow>:
+    name:'instruction'
+    FloatLayout:
+    
+        Label:
+            text:'Instructions'
+            font_size:40
+            size_hint: 0.5, 0.15
+            pos_hint: {'x':0.25,'top':.95}
+
+        Label:
+            text:root.txt
+            font_size:25
+            text_size:self.size
+            size_hint: 1, 0.7
+            pos_hint:{'x':0,'top':0.85}
+
+            
+        Button:
+            text:'Back'
+            font_size:20
+            size_hint:0.3,0.1
+            pos_hint: {'x':0.35,'top':0.1}
+            on_release:
+                app.root.current= "start" 
+                root.manager.transition.direction="right"
+
+<StartWindow>:
+    name: "start"
+    FloatLayout:
+        
+        Button:
+            text:"Start"
+            size_hint: 0.6,0.2 
+            pos_hint: {'x':0.2,'top':0.8}
+            on_press: 
+                app.root.current= "game" 
+                root.manager.transition.direction="right"
+        Button:
+            text:"Instructions"
+            size_hint: 0.6,0.2 
+            pos_hint: {'x':0.2,'top':0.55}
+            on_press: 
+                app.root.current= "instruction" 
+                root.manager.transition.direction="left"
+        Button:
+            text:"Quit"
+            size_hint: 0.6,0.2 
+            pos_hint: {'x':0.2,'top':0.3}
+            on_press: root.quit_app()
+
+<GameWindow>:
+    name: "game"
+          
+    GridLayout:
+        cols:3
+        spacing:20
+        Label:
+            id: timer
+            font_size: 20    
+        Label:
+            id: score
+            font_size: 20
+        Button:
+            id: leave
+            text: 'Leave Game'
+            font_size:20
+            on_press: 
+                app.root.current= "start" 
+                root.manager.transition.direction="left"
+                root.end_popup()
+                root.reset_score()
+                root.reset_timer()
+                root.set_color()               
+        New_Tap:
+            id:a11
+        New_Tap:
+            id:a12
+        New_Tap:
+            id:a13
+        Tap:
+            id:a21
+        Tap:
+            id:a22
+        Tap:
+            id:a23
+        Tap:
+            id:a31
+        Tap:
+            id:a32
+        Tap:
+            id:a33
+        Tap:
+            id:a41
+        Tap:
+            id:a42
+        Tap:
+            id:a43
+        Shoot_btn:        
+            
+            on_press: root.color_check('a41')
+        Shoot_btn:
+            
+            on_press: root.color_check('a42')
+        Shoot_btn:
+            
+            on_press: root.color_check('a43')
+            
+<Shoot_btn@Button>:
+    text:'SHOOT'
+    font_size: 35
+
+<New_Tap>:
+    text:''
+    font_size: 35
+    canvas:
+        Color:
+            rgba: self.color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        
+<Tap>:
+    text:''
+    font_size: 35
+    canvas:
+        Color:
+            rgba: self.color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            
+            
+<End_Popup_Content>:
+    Label:
+        text:'Game Over'
+        font_size: 40
+        size_hint: 0.5, 0.3
+        pos_hint: {'x':0.25,'top':1}
+        
+    Label:
+        id:score_final
+        text:''
+        font_size:30
+        size_hint: 0.5,0.3
+        pos_hint:{'x':0.25,'y':0.6}
+        
+            
+    Label:
+        id:comment
+        font_size: 30
+        text_size: self.size
+        size_hint: 1, 0.3
+        pos_hint:{'x':0,'y':0.3}
+        valign: 'center'
+        halign: 'center'
+        
+    Button:
+        id:btn
+        text:'Close'
+        font_size: 20
+        size_hint: 0.3,0.2
+        pos_hint: {'x':0.35,'top':0.3}
+        
