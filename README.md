@@ -1,6 +1,5 @@
 # PewPew-Game
 Digital World Final Assignment
-# Pew Pew Game
 ## Game Summary
 This is a simple tapping game where the player aims to hit as many green blocks as they can within a time limit. The more successful hits, the higher their score.
 
