@@ -68,7 +68,8 @@ GameApp().run()
 ```python
 class InstructionWindow(Screen):
 class StartWindow(Screen):
-class GameWindow(Screen):```
+class GameWindow(Screen):
+```
 
 ```
 ScreenManager:
